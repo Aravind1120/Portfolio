@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aravind Dinisinala — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+  :root {
+    --navy:#080D1A;--card:#0F1729;--card2:#141E35;--border:rgba(0,212,255,0.12);
+    --cyan:#00D4FF;--violet:#7C3AED;--emerald:#10B981;--amber:#F59E0B;
+    --text:#E2E8F0;--muted:#8892A4;--white:#FFFFFF;
+    --gradient:linear-gradient(135deg,#00D4FF 0%,#7C3AED 100%);
+    --gradient2:linear-gradient(135deg,#10B981 0%,#00D4FF 100%);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--text);line-height:1.7;overflow-x:hidden}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,13,26,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px}
+  .nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:-0.5px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{font-size:0.82rem;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s}
+  .nav-links a:hover{color:var(--cyan)}
+  .nav-cta{background:var(--gradient);color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:0.82rem;font-weight:600;cursor:pointer;text-decoration:none;letter-spacing:0.3px;transition:opacity 0.2s}
+  .nav-cta:hover{opacity:0.85}
+  #hero{min-height:100vh;display:flex;align-items:center;padding:120px 5% 80px;position:relative;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 70% 40%,rgba(124,58,237,0.18) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 20% 70%,rgba(0,212,255,0.12) 0%,transparent 70%)}
+  .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:5rem;align-items:center;max-width:1200px;margin:0 auto;width:100%}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);color:var(--emerald);padding:6px 14px;border-radius:100px;font-size:0.78rem;font-weight:600;letter-spacing:0.5px;margin-bottom:1.5rem}
+  .hero-badge span{width:8px;height:8px;background:var(--emerald);border-radius:50%;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+  .hero-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:700;line-height:1.05;letter-spacing:-2px;color:var(--white);margin-bottom:0.4rem}
+  .hero-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:400;letter-spacing:-0.5px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1.4rem}
+  .hero-summary{color:var(--muted);font-size:0.97rem;line-height:1.8;max-width:580px;margin-bottom:2rem}
+  .hero-stats{display:flex;gap:2.5rem;margin-bottom:2.5rem}
+  .stat-num{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+  .stat-label{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn-primary{background:var(--gradient);color:#fff;padding:14px 28px;border-radius:10px;font-weight:600;font-size:0.92rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:opacity 0.2s,transform 0.2s}
+  .btn-primary:hover{opacity:0.88;transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--cyan);border:1.5px solid rgba(0,212,255,0.4);padding:13px 28px;border-radius:10px;font-weight:600;font-size:0.92rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:border-color 0.2s,background 0.2s,transform 0.2s}
+  .btn-outline:hover{border-color:var(--cyan);background:rgba(0,212,255,0.07);transform:translateY(-2px)}
+  .terminal-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 0 80px rgba(124,58,237,0.18),0 20px 60px rgba(0,0,0,0.5)}
+  .terminal-bar{background:#1a2332;padding:12px 16px;display:flex;align-items:center;gap:8px}
+  .t-dot{width:12px;height:12px;border-radius:50%}
+  .t-dot.red{background:#FF5F57}.t-dot.yellow{background:#FEBC2E}.t-dot.green{background:#28C840}
+  .terminal-title{font-size:0.72rem;color:var(--muted);margin-left:auto;font-family:'JetBrains Mono'}
+  .terminal-body{padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:0.8rem;min-height:260px}
+  .t-line{margin-bottom:4px}
+  .t-prompt{color:var(--emerald)}.t-cmd{color:var(--white)}.t-output{color:var(--muted);padding-left:0.5rem}
+  .t-key{color:var(--cyan)}.t-val{color:var(--amber)}.t-tag{color:var(--violet)}
+  .t-cursor{display:inline-block;width:8px;height:16px;background:var(--cyan);animation:blink 1s step-end infinite;vertical-align:text-bottom;margin-left:2px}
+  @keyframes blink{50%{opacity:0}}
+  .contact-strip{display:flex;flex-wrap:wrap;gap:0.8rem;margin-top:1.5rem}
+  .contact-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:0.8rem;font-weight:500;text-decoration:none;transition:transform 0.15s,opacity 0.15s;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:var(--text)}
+  .contact-chip:hover{transform:translateY(-2px);opacity:0.85}
+  .contact-chip i{font-size:0.9rem}
+  .chip-email i{color:#EA4335}.chip-phone i{color:var(--emerald)}.chip-linkedin i{color:#0A66C2}.chip-whatsapp i{color:#25D366}
+  section{padding:100px 5%}
+  .section-inner{max-width:1200px;margin:0 auto}
+  .section-label{font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:0.6rem}
+  .section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:var(--white);letter-spacing:-1px;margin-bottom:0.5rem}
+  .section-subtitle{color:var(--muted);font-size:0.95rem;margin-bottom:3.5rem}
+  .divider{width:48px;height:3px;background:var(--gradient);border-radius:2px;margin:1rem 0 3.5rem}
+  #why{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+  .why-card{background:var(--navy);border:1px solid var(--border);border-radius:14px;padding:1.8rem;transition:transform 0.2s,border-color 0.2s;position:relative;overflow:hidden}
+  .why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);opacity:0;transition:opacity 0.2s}
+  .why-card:hover{transform:translateY(-4px);border-color:rgba(0,212,255,0.25)}
+  .why-card:hover::before{opacity:1}
+  .why-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem}
+  .why-card h3{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.5rem}
+  .why-card p{font-size:0.85rem;color:var(--muted);line-height:1.7}
+  .skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+  .skill-group{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.8rem}
+  .skill-group-title{font-family:'Space Grotesk',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:1.4rem;display:flex;align-items:center;gap:8px}
+  .skill-group-title i{color:var(--cyan)}
+  .skill-row{margin-bottom:1.1rem}
+  .skill-top{display:flex;justify-content:space-between;margin-bottom:6px}
+  .skill-name{font-size:0.85rem;font-weight:500;color:var(--text)}
+  .skill-pct{font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono'}
+  .skill-bar{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
+  .skill-fill{height:100%;border-radius:3px;transition:width 1.2s ease}
+  .fill-cyan{background:linear-gradient(90deg,#00D4FF,#7C3AED)}
+  .fill-green{background:linear-gradient(90deg,#10B981,#00D4FF)}
+  .fill-violet{background:linear-gradient(90deg,#7C3AED,#F59E0B)}
+  .tech-tags{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:0.5rem}
+  .tag{font-size:0.78rem;font-weight:500;padding:5px 12px;border-radius:6px;font-family:'JetBrains Mono';border:1px solid}
+  .tag-cyan{background:rgba(0,212,255,0.08);color:var(--cyan);border-color:rgba(0,212,255,0.2)}
+  .tag-violet{background:rgba(124,58,237,0.08);color:#A78BFA;border-color:rgba(124,58,237,0.25)}
+  .tag-green{background:rgba(16,185,129,0.08);color:var(--emerald);border-color:rgba(16,185,129,0.2)}
+  .tag-amber{background:rgba(245,158,11,0.08);color:var(--amber);border-color:rgba(245,158,11,0.2)}
+  .timeline{position:relative;padding-left:2rem}
+  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--cyan),var(--violet),transparent);border-radius:1px}
+  .tl-item{position:relative;margin-bottom:3rem}
+  .tl-dot{position:absolute;left:-2.55rem;top:0.35rem;width:14px;height:14px;border-radius:50%;background:var(--gradient);border:2px solid var(--navy);box-shadow:0 0 12px rgba(0,212,255,0.5)}
+  .tl-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.8rem;transition:border-color 0.2s}
+  .tl-card:hover{border-color:rgba(0,212,255,0.25)}
+  .tl-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.3rem}
+  .tl-role{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white)}
+  .tl-period{font-size:0.75rem;font-family:'JetBrains Mono';background:rgba(0,212,255,0.1);color:var(--cyan);padding:4px 10px;border-radius:6px;border:1px solid rgba(0,212,255,0.2)}
+  .tl-company{font-size:0.88rem;color:var(--cyan);font-weight:500;margin-bottom:0.2rem}
+  .tl-domain{font-size:0.75rem;background:rgba(16,185,129,0.08);color:var(--emerald);border:1px solid rgba(16,185,129,0.2);padding:3px 10px;border-radius:5px;display:inline-block;margin-bottom:1rem;font-weight:500}
+  .tl-project{margin-bottom:1.5rem}
+  .tl-project-title{font-size:0.92rem;font-weight:600;color:var(--white);margin-bottom:0.3rem}
+  .tl-project-period{font-size:0.75rem;color:var(--muted);font-family:'JetBrains Mono';margin-bottom:0.5rem}
+  .tl-desc{font-size:0.84rem;color:var(--muted);margin-bottom:0.8rem;line-height:1.7}
+  .tl-list{list-style:none;padding:0}
+  .tl-list li{font-size:0.84rem;color:var(--muted);padding:4px 0 4px 1.2rem;position:relative;line-height:1.6}
+  .tl-list li::before{content:'▸';position:absolute;left:0;color:var(--cyan);font-size:0.7rem;top:6px}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:1.5rem}
+  .project-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.8rem;transition:transform 0.2s,border-color 0.2s;position:relative}
+  .project-card:hover{transform:translateY(-4px);border-color:rgba(0,212,255,0.25)}
+  .project-num{font-family:'JetBrains Mono';font-size:0.7rem;color:var(--violet);font-weight:500;margin-bottom:1rem;letter-spacing:1px}
+  .project-name{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:0.3rem}
+  .project-subtitle{font-size:0.78rem;color:var(--cyan);margin-bottom:0.8rem;font-weight:500}
+  .project-desc{font-size:0.84rem;color:var(--muted);line-height:1.7;margin-bottom:1rem}
+  .project-points{list-style:none;padding:0;margin-bottom:1.2rem}
+  .project-points li{font-size:0.82rem;color:var(--muted);padding:3px 0 3px 1.2rem;position:relative}
+  .project-points li::before{content:'▸';position:absolute;left:0;color:var(--emerald);font-size:0.65rem;top:5px}
+  .project-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+  .github-link{display:inline-flex;align-items:center;gap:6px;font-size:0.8rem;color:var(--muted);text-decoration:none;transition:color 0.2s}
+  .github-link:hover{color:var(--white)}
+  .cert-edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  .info-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.8rem;display:flex;gap:1.2rem;align-items:flex-start;transition:border-color 0.2s}
+  .info-card:hover{border-color:rgba(0,212,255,0.25)}
+  .info-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+  .info-card h3{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:0.2rem}
+  .info-card .sub{font-size:0.84rem;color:var(--cyan);font-weight:500;margin-bottom:0.2rem}
+  .info-card .meta{font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono';margin-bottom:0.5rem}
+  .info-card .detail{font-size:0.82rem;color:var(--muted);line-height:1.6}
+  #goals{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .goals-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+  .goals-text h2{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:1rem}
+  .goals-text p{font-size:0.92rem;color:var(--muted);line-height:1.8;margin-bottom:1rem}
+  .goal-chips{display:flex;flex-wrap:wrap;gap:0.6rem}
+  .goal-chip{font-size:0.8rem;padding:6px 14px;border-radius:8px;background:rgba(0,212,255,0.07);color:var(--cyan);border:1px solid rgba(0,212,255,0.2);font-weight:500;display:flex;align-items:center;gap:6px}
+  .metrics-box{background:var(--navy);border:1px solid var(--border);border-radius:14px;padding:1.8rem}
+  .metric-row{display:flex;align-items:center;gap:1rem;padding:0.9rem 0;border-bottom:1px solid var(--border)}
+  .metric-row:last-child{border-bottom:none}
+  .metric-icon{font-size:1.2rem;width:36px;text-align:center}
+  .metric-info h4{font-size:0.9rem;font-weight:600;color:var(--white)}
+  .metric-info p{font-size:0.78rem;color:var(--muted)}
+  .strengths-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+  .strength-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center;transition:transform 0.2s,border-color 0.2s}
+  .strength-card:hover{transform:translateY(-3px);border-color:rgba(124,58,237,0.3)}
+  .strength-num{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .strength-label{font-size:0.82rem;color:var(--muted);margin-top:0.3rem}
+  .strength-icon{font-size:1.6rem;margin-bottom:0.8rem}
+  #contact{background:var(--card);border-top:1px solid var(--border)}
+  .contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center}
+  .contact-info h2{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--white);margin-bottom:0.8rem}
+  .contact-info p{color:var(--muted);font-size:0.95rem;line-height:1.8;margin-bottom:2rem}
+  .contact-links{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .contact-link-card{display:flex;align-items:center;gap:0.8rem;padding:1rem;background:var(--navy);border:1px solid var(--border);border-radius:12px;text-decoration:none;transition:border-color 0.2s,transform 0.2s}
+  .contact-link-card:hover{border-color:rgba(0,212,255,0.3);transform:translateY(-2px)}
+  .clc-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+  .clc-text{display:flex;flex-direction:column}
+  .clc-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+  .clc-value{font-size:0.84rem;color:var(--white);font-weight:500}
+  .contact-cta{background:var(--navy);border:1px solid var(--border);border-radius:14px;padding:2.5rem;text-align:center}
+  .contact-cta h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:0.6rem}
+  .contact-cta p{font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem}
+  .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--gradient);color:#fff;padding:12px 24px;border-radius:10px;font-weight:600;font-size:0.88rem;text-decoration:none;transition:opacity 0.2s;margin-bottom:0.6rem}
+  .cta-btn:hover{opacity:0.85}
+  footer{background:var(--navy);border-top:1px solid var(--border);padding:2rem 5%;text-align:center;font-size:0.8rem;color:var(--muted)}
+  footer span{color:var(--cyan)}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+  .reveal.visible{opacity:1;transform:none}
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:2.5rem}
+    .terminal-card{display:none}
+    .skills-layout{grid-template-columns:1fr}
+    .cert-edu-grid{grid-template-columns:1fr}
+    .goals-grid{grid-template-columns:1fr}
+    .contact-grid{grid-template-columns:1fr}
+    .contact-links{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+  @media(max-width:600px){section{padding:70px 4%}.hero-stats{gap:1.5rem}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">AD / Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#why">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#goals">Goals</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:aravinddinisinala123@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge"><span></span> Open to Opportunities</div>
+      <div class="hero-name">Aravind<br/>Dinisinala</div>
+      <div class="hero-title">Full Stack Software Engineer</div>
+      <p class="hero-summary">Building scalable enterprise web applications with Java, Spring Boot &amp; Angular. Nearly 3 years shipping production-grade banking systems — from design to deployment in Agile sprints.</p>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Years Exp.</span></div>
+        <div class="stat-item"><span class="stat-num">2</span><span class="stat-label">Live Projects</span></div>
+        <div class="stat-item"><span class="stat-num">15+</span><span class="stat-label">Technologies</span></div>
+        <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Personal Apps</span></div>
+      </div>
+      <div class="hero-actions">
+        <a href="mailto:aravinddinisinala123@gmail.com" class="btn-primary"><i class="fa fa-envelope"></i> Get In Touch</a>
+        <a href="https://linkedin.com/in/aravind-dinisinala" target="_blank" class="btn-outline"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </div>
+      <div class="contact-strip">
+        <a href="tel:+919014761363" class="contact-chip chip-phone"><i class="fa fa-phone"></i>+91 90147 61363</a>
+        <a href="mailto:aravinddinisinala123@gmail.com" class="contact-chip chip-email"><i class="fa fa-envelope"></i>Email Me</a>
+        <a href="https://linkedin.com/in/aravind-dinisinala" target="_blank" class="contact-chip chip-linkedin"><i class="fab fa-linkedin"></i>LinkedIn</a>
+        <a href="https://wa.me/919014761363" target="_blank" class="contact-chip chip-whatsapp"><i class="fab fa-whatsapp"></i>WhatsApp</a>
+        <span class="contact-chip"><i class="fa fa-map-marker-alt" style="color:var(--amber)"></i>Hyderabad, India</span>
+      </div>
+    </div>
+    <div class="terminal-card">
+      <div class="terminal-bar">
+        <div class="t-dot red"></div><div class="t-dot yellow"></div><div class="t-dot green"></div>
+        <span class="terminal-title">aravind@portfolio ~ zsh</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-prompt">➜</span> <span class="t-cmd">cat profile.json</span></div>
+        <div class="t-line t-output">{</div>
+        <div class="t-line t-output">&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-val">"Aravind Dinisinala"</span>,</div>
+        <div class="t-line t-output">&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-val">"Software Engineer"</span>,</div>
+        <div class="t-line t-output">&nbsp;&nbsp;<span class="t-key">"experience"</span>: <span class="t-val">"2 yrs 11 months"</span>,</div>
+        <div class="t-line t-output">&nbsp;&nbsp;<span class="t-key">"stack"</span>: [</div>
+        <div class="t-line t-output">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Java 17"</span>, <span class="t-val">"Spring Boot"</span>,</div>
+        <div class="t-line t-output">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Angular"</span>, <span class="t-val">"MySQL"</span></div>
+        <div class="t-line t-output">&nbsp;&nbsp;],</div>
+        <div class="t-line t-output">&nbsp;&nbsp;<span class="t-key">"domain"</span>: <span class="t-val">"Banking &amp; FinTech"</span>,</div>
+        <div class="t-line t-output">&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-tag">"open_to_work"</span></div>
+        <div class="t-line t-output">}</div>
+        <br/>
+        <div class="t-line"><span class="t-prompt">➜</span> <span class="t-cmd">run --hire aravind</span></div>
+        <div class="t-line t-output" style="color:var(--emerald)">✔ Excellent candidate found!</div>
+        <div class="t-line t-output" style="color:var(--emerald)">✔ Full-stack verified</div>
+        <div class="t-line t-output" style="color:var(--emerald)">✔ Banking domain expertise</div>
+        <div class="t-line"><span class="t-prompt">➜</span> <span class="t-cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="section-inner">
+    <div class="section-label">Why Aravind?</div>
+    <h2 class="section-title">Why Hire Me</h2>
+    <div class="divider"></div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon" style="background:rgba(0,212,255,0.1)"><i class="fas fa-layer-group" style="color:var(--cyan)"></i></div>
+        <h3>True Full Stack</h3>
+        <p>Hands-on across the complete stack — Spring Boot microservices on the backend to pixel-perfect Angular components on the frontend, with MySQL database optimization throughout.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon" style="background:rgba(16,185,129,0.1)"><i class="fas fa-university" style="color:var(--emerald)"></i></div>
+        <h3>Banking Domain Expert</h3>
+        <p>3 years building mission-critical banking apps — loan management, customer onboarding, KYC verification, and secure self-service portals with JWT auth and Spring Security.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon" style="background:rgba(124,58,237,0.1)"><i class="fas fa-shield-alt" style="color:#A78BFA"></i></div>
+        <h3>Production-Proven</h3>
+        <p>Not just a developer — I resolve production defects, validate CI/CD deployments with Jenkins, write unit tests (JUnit + Mockito), and document APIs with Swagger/OpenAPI.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon" style="background:rgba(245,158,11,0.1)"><i class="fas fa-users" style="color:var(--amber)"></i></div>
+        <h3>Agile Team Player</h3>
+        <p>Proven collaborator across QA, Business Analysts, and dev teams in Agile Scrum — participating in sprint planning, stand-ups, reviews, and code reviews consistently.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon" style="background:rgba(239,68,68,0.1)"><i class="fas fa-tachometer-alt" style="color:#F87171"></i></div>
+        <h3>Performance-Focused</h3>
+        <p>Actively optimizes SQL queries, CRUD operations, and application performance — building systems that don't just work, but scale under real banking traffic loads.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon" style="background:rgba(0,212,255,0.1)"><i class="fas fa-graduation-cap" style="color:var(--cyan)"></i></div>
+        <h3>Certified &amp; Committed</h3>
+        <p>NSE TalentSprint Full Stack Java Developer certification plus continuous self-learning — built personal projects (event platform, food app, game engine) outside work hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="strengths">
+  <div class="section-inner">
+    <div class="section-label">At a Glance</div>
+    <h2 class="section-title">Key Strengths</h2>
+    <div class="divider"></div>
+    <div class="strengths-grid">
+      <div class="strength-card reveal"><div class="strength-icon">☕</div><div class="strength-num">3+</div><div class="strength-label">Years Java Development</div></div>
+      <div class="strength-card reveal"><div class="strength-icon">🏦</div><div class="strength-num">2</div><div class="strength-label">Banking Projects Delivered</div></div>
+      <div class="strength-card reveal"><div class="strength-icon">🔗</div><div class="strength-num">20+</div><div class="strength-label">REST APIs Designed</div></div>
+      <div class="strength-card reveal"><div class="strength-icon">🧪</div><div class="strength-num">JUnit</div><div class="strength-label">Unit &amp; Integration Testing</div></div>
+      <div class="strength-card reveal"><div class="strength-icon">⚡</div><div class="strength-num">Agile</div><div class="strength-label">Scrum-Certified Mindset</div></div>
+      <div class="strength-card reveal"><div class="strength-icon">🛡️</div><div class="strength-num">JWT</div><div class="strength-label">Secure Auth Implementation</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="section-inner">
+    <div class="section-label">Technical Proficiency</div>
+    <h2 class="section-title">Skills Dashboard</h2>
+    <div class="divider"></div>
+    <div class="skills-layout">
+      <div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title"><i class="fas fa-server"></i> Backend Engineering</div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">Java / Core Java</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill fill-cyan" style="width:90%"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">Spring Boot</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill fill-cyan" style="width:88%"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">REST API Design</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill fill-cyan" style="width:88%"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">Microservices</span><span class="skill-pct">78%</span></div><div class="skill-bar"><div class="skill-fill fill-cyan" style="width:78%"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">Hibernate / JPA</span><span class="skill-pct">82%</span></div><div class="skill-bar"><div class="skill-fill fill-cyan" style="width:82%"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">Spring Security / JWT</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill fill-cyan" style="width:80%"></div></div></div>
+        </div>
+        <br/>
+        <div class="skill-group reveal">
+          <div class="skill-group-title"><i class="fas fa-database"></i> Database &amp; Testing</div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">MySQL / SQL</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill fill-violet" style="width:85%"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">JUnit / Mockito</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill fill-violet" style="width:80%"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">Postman API Testing</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill fill-violet" style="width:85%"></div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title"><i class="fas fa-desktop"></i> Frontend Development</div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">Angular / TypeScript</span><span class="skill-pct">82%</span></div><div class="skill-bar"><div class="skill-fill fill-green" style="width:82%"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">HTML5 / CSS3</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill fill-green" style="width:88%"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">JavaScript</span><span class="skill-pct">78%</span></div><div class="skill-bar"><div class="skill-fill fill-green" style="width:78%"></div></div></div>
+          <div class="skill-row"><div class="skill-top"><span class="skill-name">Bootstrap / Responsive</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill fill-green" style="width:80%"></div></div></div>
+        </div>
+        <br/>
+        <div class="skill-group reveal">
+          <div class="skill-group-title"><i class="fas fa-tools"></i> Tools &amp; DevOps</div>
+          <div style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem">Technologies used daily in production environments</div>
+          <div class="tech-tags">
+            <span class="tag tag-cyan">Git</span><span class="tag tag-cyan">GitHub</span>
+            <span class="tag tag-green">Jenkins</span><span class="tag tag-green">Maven</span>
+            <span class="tag tag-violet">Jira</span><span class="tag tag-violet">Swagger/OpenAPI</span>
+            <span class="tag tag-amber">Apache Tomcat</span><span class="tag tag-amber">Eclipse</span>
+            <span class="tag tag-cyan">VS Code</span><span class="tag tag-green">Postman</span>
+          </div>
+        </div>
+        <br/>
+        <div class="skill-group reveal">
+          <div class="skill-group-title"><i class="fas fa-brain"></i> Core Concepts</div>
+          <div class="tech-tags">
+            <span class="tag tag-cyan">OOP</span><span class="tag tag-violet">MVC Architecture</span>
+            <span class="tag tag-green">SDLC</span><span class="tag tag-amber">Agile Scrum</span>
+            <span class="tag tag-cyan">Collections</span><span class="tag tag-green">Exception Handling</span>
+            <span class="tag tag-violet">Java 8+ Features</span><span class="tag tag-amber">Design Patterns</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label">Career Timeline</div>
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="divider"></div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div class="tl-role">Software Engineer</div>
+            <div class="tl-period">Jul 2023 – Present</div>
+          </div>
+          <div class="tl-company"><i class="fas fa-building" style="font-size:0.75rem;margin-right:5px"></i>Ramsai Software Solutions</div>
+          <div class="tl-domain">🏦 Banking &amp; Financial Services</div>
+          <div class="tl-project">
+            <div class="tl-project-title">🚀 Project 2 — Retail Loan Management &amp; Customer Self-Service Portal</div>
+            <div class="tl-project-period">Jan 2025 – Present (Current)</div>
+            <div class="tl-desc">Full-stack banking application enabling customers to apply for retail loans, upload supporting documents, track application status, and manage loan information through a secure microservices-based portal.</div>
+            <ul class="tl-list">
+              <li>Designed and developed Spring Boot REST APIs for loan application and customer self-service modules</li>
+              <li>Secured REST APIs using Spring Security and JWT authentication mechanisms</li>
+              <li>Built Angular components for loan application, dashboard, and document management modules</li>
+              <li>Optimized CRUD operations and SQL queries for improved application performance</li>
+              <li>Created API documentation using Swagger/OpenAPI; wrote unit tests with JUnit &amp; Mockito</li>
+              <li>Resolved production defects and supported CI/CD releases through Jenkins pipelines</li>
+              <li>Collaborated across QA, BA, and dev teams throughout Agile sprint cycles</li>
+            </ul>
+            <div class="tech-tags" style="margin-top:0.8rem">
+              <span class="tag tag-cyan">Java 17</span><span class="tag tag-cyan">Spring Boot</span>
+              <span class="tag tag-violet">Spring Security</span><span class="tag tag-violet">JWT</span>
+              <span class="tag tag-green">Microservices</span><span class="tag tag-green">Angular</span>
+              <span class="tag tag-amber">MySQL</span><span class="tag tag-amber">Jenkins</span>
+            </div>
+          </div>
+          <div class="tl-project" style="border-top:1px solid var(--border);padding-top:1.5rem">
+            <div class="tl-project-title">📋 Project 1 — Digital Customer Onboarding &amp; Account Management System</div>
+            <div class="tl-project-period">Jul 2023 – Dec 2024</div>
+            <div class="tl-desc">Banking application for customer onboarding, KYC verification, account creation, and profile management used by branch operations teams in an Agile development environment.</div>
+            <ul class="tl-list">
+              <li>Designed and developed REST APIs using Spring Boot for customer onboarding and account management</li>
+              <li>Implemented CRUD operations using Spring Data JPA and MySQL with query optimization</li>
+              <li>Built Angular components, services, reactive forms, and frontend validations</li>
+              <li>Resolved application defects and implemented functional enhancements iteratively</li>
+              <li>Managed source code using Git and collaborated during feature integration and releases</li>
+              <li>Participated in sprint planning, daily stand-ups, sprint reviews, and code reviews</li>
+            </ul>
+            <div class="tech-tags" style="margin-top:0.8rem">
+              <span class="tag tag-cyan">Java 17</span><span class="tag tag-cyan">Spring MVC</span>
+              <span class="tag tag-green">Angular</span><span class="tag tag-green">TypeScript</span>
+              <span class="tag tag-violet">Hibernate</span><span class="tag tag-amber">MySQL</span>
+              <span class="tag tag-amber">Postman</span><span class="tag tag-cyan">Jira</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-dot" style="background:var(--gradient2)"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div class="tl-role">Full Stack Java Developer Training</div>
+            <div class="tl-period">Nov 2022 – May 2023</div>
+          </div>
+          <div class="tl-company"><i class="fas fa-certificate" style="font-size:0.75rem;margin-right:5px"></i>NSE TalentSprint Pvt. Ltd., Hyderabad</div>
+          <div class="tl-domain">🎓 Professional Certification Program</div>
+          <div class="tl-desc">Intensive full-stack development program covering enterprise Java, modern web frameworks, and agile practices — the foundation of my professional software engineering career.</div>
+          <div class="tech-tags" style="margin-top:0.8rem">
+            <span class="tag tag-cyan">Java SE/EE</span><span class="tag tag-cyan">Spring Boot</span>
+            <span class="tag tag-green">Angular</span><span class="tag tag-green">MySQL</span>
+            <span class="tag tag-amber">HTML/CSS</span><span class="tag tag-violet">REST APIs</span><span class="tag tag-violet">Agile</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="section-inner">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Projects &amp; Achievements</h2>
+    <div class="divider"></div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-num">// PROJECT 01 · FULL STACK</div>
+        <div class="project-name">AD-Events</div>
+        <div class="project-subtitle">Full Stack Event Management Platform</div>
+        <p class="project-desc">End-to-end event management application with full CRUD functionality, REST API integration, and responsive Angular UI backed by Spring Boot and MySQL.</p>
+        <ul class="project-points">
+          <li>Spring Boot REST APIs with Spring Data JPA and MySQL backend</li>
+          <li>Responsive Angular components integrated with backend services</li>
+          <li>Comprehensive Postman and JUnit testing coverage</li>
+        </ul>
+        <div class="tech-tags" style="margin-bottom:1.2rem">
+          <span class="tag tag-cyan">Java</span><span class="tag tag-cyan">Spring Boot</span>
+          <span class="tag tag-green">Angular</span><span class="tag tag-amber">MySQL</span><span class="tag tag-violet">REST APIs</span>
+        </div>
+        <div class="project-footer">
+          <a href="https://github.com/your-github/ad-events" target="_blank" class="github-link"><i class="fab fa-github"></i> View on GitHub</a>
+          <span class="tag tag-green" style="font-size:0.72rem">Full Stack</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">// PROJECT 02 · FRONTEND</div>
+        <div class="project-name">Food Munch</div>
+        <div class="project-subtitle">Responsive Food Ordering Web App</div>
+        <p class="project-desc">Fully responsive food ordering web application with interactive UI components, category browsing, and mobile-first responsive layouts for a great cross-device experience.</p>
+        <ul class="project-points">
+          <li>Built with vanilla HTML, CSS, and JavaScript — no framework overhead</li>
+          <li>Interactive UI components and responsive grid layouts</li>
+          <li>Demonstrates strong fundamental web development skills</li>
+        </ul>
+        <div class="tech-tags" style="margin-bottom:1.2rem">
+          <span class="tag tag-amber">HTML5</span><span class="tag tag-amber">CSS3</span>
+          <span class="tag tag-cyan">JavaScript</span><span class="tag tag-violet">Responsive Design</span>
+        </div>
+        <div class="project-footer">
+          <a href="https://github.com/your-github/food-munch" target="_blank" class="github-link"><i class="fab fa-github"></i> View on GitHub</a>
+          <span class="tag tag-amber" style="font-size:0.72rem">Frontend</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">// PROJECT 03 · CORE JAVA</div>
+        <div class="project-name">Connect Four</div>
+        <div class="project-subtitle">Core Java Game Engine</div>
+        <p class="project-desc">Interactive two-player Connect Four game built entirely in Core Java, demonstrating deep understanding of object-oriented programming principles and software design patterns.</p>
+        <ul class="project-points">
+          <li>Full game logic using OOP: encapsulation, inheritance, polymorphism</li>
+          <li>Robust exception handling for edge cases and invalid inputs</li>
+          <li>Design patterns applied for clean, maintainable game architecture</li>
+        </ul>
+        <div class="tech-tags" style="margin-bottom:1.2rem">
+          <span class="tag tag-cyan">Core Java</span><span class="tag tag-violet">OOP</span><span class="tag tag-green">Design Patterns</span>
+        </div>
+        <div class="project-footer">
+          <a href="https://github.com/your-github/connect-four" target="_blank" class="github-link"><i class="fab fa-github"></i> View on GitHub</a>
+          <span class="tag tag-cyan" style="font-size:0.72rem">Core Java</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-inner">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Education &amp; Certifications</h2>
+    <div class="divider"></div>
+    <div class="cert-edu-grid">
+      <div class="info-card reveal">
+        <div class="info-icon" style="background:rgba(245,158,11,0.1)"><i class="fas fa-certificate" style="color:var(--amber);font-size:1.4rem"></i></div>
+        <div>
+          <div class="sub">NSE TalentSprint Pvt. Ltd.</div>
+          <h3>Full Stack Java Developer Certification</h3>
+          <div class="meta">Nov 2022 – May 2023 · Hyderabad, India</div>
+          <div class="detail">Covered Java SE/EE, Spring Boot, Angular, MySQL, HTML, CSS, REST APIs, and Agile methodologies — NSE Academy's premier technology upskilling program.</div>
+          <div class="tech-tags" style="margin-top:0.8rem">
+            <span class="tag tag-amber">Java SE/EE</span><span class="tag tag-cyan">Spring Boot</span><span class="tag tag-green">Angular</span>
+          </div>
+        </div>
+      </div>
+      <div class="info-card reveal">
+        <div class="info-icon" style="background:rgba(124,58,237,0.1)"><i class="fas fa-graduation-cap" style="color:#A78BFA;font-size:1.4rem"></i></div>
+        <div>
+          <div class="sub">Sana Engineering College (JNTUH)</div>
+          <h3>B.Tech — Civil Engineering</h3>
+          <div class="meta">Jul 2018 – Aug 2022 · CGPA: 6.77</div>
+          <div class="detail">Bachelor of Technology from Jawaharlal Nehru Technological University Hyderabad. Built strong analytical foundations before transitioning into software engineering.</div>
+          <div class="tech-tags" style="margin-top:0.8rem">
+            <span class="tag tag-violet">JNTUH Affiliated</span><span class="tag tag-green">B.Tech</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="goals">
+  <div class="section-inner">
+    <div class="goals-grid">
+      <div class="goals-text reveal">
+        <div class="section-label">Vision</div>
+        <h2>Where I'm Headed</h2>
+        <p>I'm passionate about building enterprise-grade applications that solve real-world problems at scale. My immediate goal is to join a high-impact engineering team where I can deepen my expertise in cloud-native Java and microservices architecture.</p>
+        <p>Long-term, I aim to evolve into a Solution Architect role — bridging business needs and technical execution for large-scale distributed systems, particularly in FinTech and Banking.</p>
+        <div class="goal-chips">
+          <div class="goal-chip"><i class="fas fa-cloud"></i> Cloud-Native Java</div>
+          <div class="goal-chip"><i class="fas fa-sitemap"></i> Solution Architecture</div>
+          <div class="goal-chip"><i class="fas fa-chart-line"></i> FinTech Innovation</div>
+          <div class="goal-chip"><i class="fas fa-cube"></i> Microservices at Scale</div>
+          <div class="goal-chip"><i class="fas fa-shield-alt"></i> Secure Systems</div>
+        </div>
+      </div>
+      <div class="metrics-box reveal">
+        <div class="metric-row"><div class="metric-icon">🎯</div><div class="metric-info"><h4>Target Role</h4><p>Software Engineer / Full Stack Developer</p></div></div>
+        <div class="metric-row"><div class="metric-icon">🏢</div><div class="metric-info"><h4>Target Industry</h4><p>FinTech, Banking, Enterprise SaaS</p></div></div>
+        <div class="metric-row"><div class="metric-icon">📍</div><div class="metric-info"><h4>Location Preference</h4><p>Hyderabad / Remote / Open to Relocation</p></div></div>
+        <div class="metric-row"><div class="metric-icon">⚡</div><div class="metric-info"><h4>Availability</h4><p>Immediately Available</p></div></div>
+        <div class="metric-row"><div class="metric-icon">📚</div><div class="metric-info"><h4>Currently Learning</h4><p>AWS, Docker, Kubernetes, Spring Cloud</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-label">Let's Connect</div>
+        <h2>Ready to Build Something Great?</h2>
+        <p>I'm actively looking for Software Engineer and Full Stack Developer roles. Whether you're a recruiter, hiring manager, or tech lead — I'd love to discuss how I can add value to your team.</p>
+        <div class="contact-links">
+          <a href="mailto:aravinddinisinala123@gmail.com" class="contact-link-card">
+            <div class="clc-icon" style="background:rgba(234,67,53,0.15)"><i class="fa fa-envelope" style="color:#EA4335"></i></div>
+            <div class="clc-text"><span class="clc-label">Email</span><span class="clc-value">Send a message</span></div>
+          </a>
+          <a href="tel:+919014761363" class="contact-link-card">
+            <div class="clc-icon" style="background:rgba(16,185,129,0.15)"><i class="fa fa-phone" style="color:var(--emerald)"></i></div>
+            <div class="clc-text"><span class="clc-label">Phone / Call</span><span class="clc-value">+91 90147 61363</span></div>
+          </a>
+          <a href="https://linkedin.com/in/aravind-dinisinala" target="_blank" class="contact-link-card">
+            <div class="clc-icon" style="background:rgba(10,102,194,0.15)"><i class="fab fa-linkedin" style="color:#0A66C2"></i></div>
+            <div class="clc-text"><span class="clc-label">LinkedIn</span><span class="clc-value">aravind-dinisinala</span></div>
+          </a>
+          <a href="https://wa.me/919014761363" target="_blank" class="contact-link-card">
+            <div class="clc-icon" style="background:rgba(37,211,102,0.15)"><i class="fab fa-whatsapp" style="color:#25D366"></i></div>
+            <div class="clc-text"><span class="clc-label">WhatsApp</span><span class="clc-value">Chat directly</span></div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-cta reveal">
+        <div style="font-size:2.5rem;margin-bottom:1rem">👋</div>
+        <h3>Open to Full-Time &amp; Contract Roles</h3>
+        <p>Available for immediate joining. Let's schedule a quick call to discuss your requirements and how my Java + Spring Boot + Angular expertise can serve your team.</p>
+        <a href="mailto:aravinddinisinala123@gmail.com?subject=Job%20Opportunity%20for%20Aravind%20Dinisinala&body=Hi%20Aravind%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20discuss%20an%20opportunity." class="cta-btn"><i class="fa fa-envelope"></i> Email Me Directly</a><br/>
+        <a href="https://wa.me/919014761363?text=Hi%20Aravind%2C%20I%20saw%20your%20portfolio%20and%20want%20to%20discuss%20a%20job%20opportunity." target="_blank" class="cta-btn" style="background:linear-gradient(135deg,#25D366,#128C7E);margin-top:0.6rem"><i class="fab fa-whatsapp"></i> WhatsApp Me</a>
+        <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border)">
+          <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.5px">Also find me on</div>
+          <a href="https://linkedin.com/in/aravind-dinisinala" target="_blank" style="color:var(--cyan);font-size:0.88rem;text-decoration:none"><i class="fab fa-linkedin" style="margin-right:5px"></i>linkedin.com/in/aravind-dinisinala</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed for <span>Aravind Dinisinala</span> · Full Stack Software Engineer · Hyderabad, India</p>
+  <p style="margin-top:0.4rem;font-size:0.72rem">Java · Spring Boot · Angular · MySQL · 3 Years Experience · Open to Opportunities</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*60); obs.unobserve(e.target); } });
+  }, {threshold:0.1});
+  reveals.forEach(el=>obs.observe(el));
+
+  const bars = document.querySelectorAll('.skill-fill');
+  const bObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        const el=e.target, w=el.style.width;
+        el.style.width='0%';
+        setTimeout(()=>{el.style.width=w;},300);
+        bObs.unobserve(el);
+      }
+    });
+  }, {threshold:0.5});
+  bars.forEach(b=>bObs.observe(b));
+</script>
+</body>
+</html>
